@@ -1,0 +1,74 @@
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { getProducts } from '@/api/products'
+import type { AsyncState, Product, ProductFilters } from '@/types'
+import ProductCard from '@/components/product/ProductCard.vue'
+import ProductCardSkeleton from '@/components/product/ProductCardSkeleton.vue'
+import ProductFilters from '@/components/product/ProductFilters.vue'
+import ErrorBanner from '@/components/common/ErrorBanner.vue'
+import EmptyState from '@/components/common/EmptyState.vue'
+
+const state = ref<AsyncState<Product[]>>({ status: 'idle' })
+const filters = ref<ProductFilters>({ sort_by: 'name', order: 'asc' })
+
+async function fetchProducts(f: ProductFilters = {}) {
+  state.value = { status: 'loading' }
+  try {
+    const result = await getProducts(f)
+    state.value = { status: 'success', data: result.data }
+  } catch (err) {
+    state.value = {
+      status: 'error',
+      message: err instanceof Error ? err.message : 'Failed to load products.',
+    }
+  }
+}
+
+function onFiltersUpdate(newFilters: ProductFilters) {
+  filters.value = newFilters
+  fetchProducts(newFilters)
+}
+
+onMounted(() => fetchProducts(filters.value))
+</script>
+
+<template>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Products</h1>
+
+    <div class="mb-6">
+      <ProductFilters @update:filters="onFiltersUpdate" />
+    </div>
+
+    <ErrorBanner
+      v-if="state.status === 'error'"
+      :message="state.message"
+      class="mb-6"
+    />
+
+    <div
+      v-if="state.status === 'loading'"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
+      <ProductCardSkeleton v-for="n in 6" :key="n" />
+    </div>
+
+    <template v-else-if="state.status === 'success'">
+      <p class="text-sm text-gray-400 mb-4">{{ state.data.length }} product{{ state.data.length !== 1 ? 's' : '' }} found</p>
+
+      <div
+        v-if="state.data.length > 0"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <ProductCard v-for="product in state.data" :key="product.id" :product="product" />
+      </div>
+
+      <EmptyState
+        v-else
+        icon="pi-search"
+        title="No products found"
+        description="Try adjusting your filters or search term."
+      />
+    </template>
+  </div>
+</template>
