@@ -1,0 +1,115 @@
+[
+  {
+    "id": "prod-001",
+    "name": "Python Mastery Course",
+    "price": 49.99,
+    "shortDescription": "Go from beginner to advanced Python developer in 40 hours.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod001/400/300",
+    "category": "online-course",
+    "longDescription": "A comprehensive 40-hour video course covering Python fundamentals, OOP, async programming, testing with pytest, and building REST APIs with FastAPI. Includes 120 coding exercises and a capstone project.",
+    "reviews": [
+      { "id": "rev-001", "author": "Alice K.", "rating": 5, "comment": "Best Python course out there!", "date": "2025-11-15" },
+      { "id": "rev-002", "author": "Ben T.", "rating": 4, "comment": "Very thorough, some sections could be tighter.", "date": "2025-12-01" }
+    ]
+  },
+  {
+    "id": "prod-002",
+    "name": "Vue 3 Complete Guide",
+    "price": 39.99,
+    "shortDescription": "Master Vue 3 Composition API, Pinia, and Vue Router.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod002/400/300",
+    "category": "online-course",
+    "longDescription": "From the Options API to the Composition API, this guide covers every feature of Vue 3 including Teleport, Suspense, script setup syntax, and integration with TypeScript. Build three real-world projects.",
+    "reviews": [
+      { "id": "rev-003", "author": "Clara M.", "rating": 5, "comment": "Finally a course that explains reactivity clearly.", "date": "2026-01-10" }
+    ]
+  },
+  {
+    "id": "prod-003",
+    "name": "System Design Interview Handbook",
+    "price": 29.99,
+    "shortDescription": "450-page PDF guide to cracking system design rounds.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod003/400/300",
+    "category": "ebook",
+    "longDescription": "Covers distributed systems fundamentals, CAP theorem, database sharding, caching strategies, message queues, and 25 real interview walkthroughs with diagrams. Used by 50,000+ engineers.",
+    "reviews": [
+      { "id": "rev-004", "author": "David P.", "rating": 5, "comment": "Got me the job. Seriously.", "date": "2025-10-22" },
+      { "id": "rev-005", "author": "Eva L.", "rating": 4, "comment": "Great content, diagrams could be higher resolution.", "date": "2025-11-05" }
+    ]
+  },
+  {
+    "id": "prod-004",
+    "name": "Clean Code Principles eBook",
+    "price": 19.99,
+    "shortDescription": "Practical guide to writing maintainable, readable code.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod004/400/300",
+    "category": "ebook",
+    "longDescription": "Covering SOLID principles, refactoring patterns, naming conventions, test-driven development, and code review best practices with examples in Python, TypeScript, and Java.",
+    "reviews": [
+      { "id": "rev-006", "author": "Frank B.", "rating": 4, "comment": "Essential reading for any developer.", "date": "2026-02-14" }
+    ]
+  },
+  {
+    "id": "prod-005",
+    "name": "DevOps Pro License — Annual",
+    "price": 99.99,
+    "shortDescription": "1-year license for the DevOps Pro CI/CD pipeline tool.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod005/400/300",
+    "category": "software-license",
+    "longDescription": "DevOps Pro automates deployment pipelines for up to 10 repositories. Includes Docker integration, Kubernetes deployment manifests, Slack notifications, and rollback support. Annual license, renewed automatically.",
+    "reviews": [
+      { "id": "rev-007", "author": "Grace H.", "rating": 5, "comment": "Saved our team 10 hours a week.", "date": "2026-01-30" },
+      { "id": "rev-008", "author": "Henry Z.", "rating": 3, "comment": "Good tool, documentation is lacking.", "date": "2026-03-01" }
+    ]
+  },
+  {
+    "id": "prod-006",
+    "name": "CodeSnip IDE Extension License",
+    "price": 14.99,
+    "shortDescription": "Lifetime license for the CodeSnip VS Code extension.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod006/400/300",
+    "category": "software-license",
+    "longDescription": "CodeSnip provides AI-powered code snippet suggestions, multi-language support, and team snippet sharing. One-time purchase, lifetime updates included.",
+    "reviews": [
+      { "id": "rev-009", "author": "Iris T.", "rating": 5, "comment": "Incredibly useful, saves so many keystrokes.", "date": "2026-02-20" }
+    ]
+  },
+  {
+    "id": "prod-007",
+    "name": "TypeScript Deep Dive",
+    "price": 34.99,
+    "shortDescription": "Advanced TypeScript patterns for professional developers.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod007/400/300",
+    "category": "online-course",
+    "longDescription": "Covers generics, conditional types, mapped types, template literal types, declaration merging, module augmentation, and building type-safe libraries. Targeted at developers who already know TypeScript basics.",
+    "reviews": [
+      { "id": "rev-010", "author": "Jack N.", "rating": 5, "comment": "Finally understand generics properly.", "date": "2026-03-12" },
+      { "id": "rev-011", "author": "Kim O.", "rating": 4, "comment": "Dense but worth it.", "date": "2026-04-01" }
+    ]
+  },
+  {
+    "id": "prod-008",
+    "name": "The Pragmatic Developer eBook",
+    "price": 24.99,
+    "shortDescription": "Career and technical guidance for modern software engineers.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod008/400/300",
+    "category": "ebook",
+    "longDescription": "Topics include career laddering, technical debt management, working in distributed teams, debugging systematically, and building internal tools that scale. Written by a FAANG principal engineer.",
+    "reviews": [
+      { "id": "rev-012", "author": "Lena P.", "rating": 5, "comment": "Changed how I think about my career.", "date": "2026-04-10" }
+    ]
+  },
+  {
+    "id": "prod-009",
+    "name": "DBQuery Pro — Lifetime License",
+    "price": 79.99,
+    "shortDescription": "Visual SQL query builder and database explorer, one-time purchase.",
+    "thumbnailUrl": "https://picsum.photos/seed/prod009/400/300",
+    "category": "software-license",
+    "longDescription": "DBQuery Pro connects to PostgreSQL, MySQL, SQLite, and MongoDB. Features include an ER diagram viewer, query plan explainer, CSV/JSON export, and SSH tunneling. Lifetime license includes all future major versions.",
+    "reviews": [
+      { "id": "rev-013", "author": "Mark S.", "rating": 5, "comment": "Replaced DataGrip for me at a fraction of the cost.", "date": "2026-05-02" },
+      { "id": "rev-014", "author": "Nina W.", "rating": 4, "comment": "MongoDB support is a bit rough but rest is great.", "date": "2026-05-18" }
+    ]
+  }
+]
