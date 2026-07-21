@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir C:\\\\Users\\\\gilic\\\\Ecommerce platform *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\gilic\\\\Ecommerce platform\" -Recurse -File | Select-Object -Property FullName | ForEach-Object { $_.FullName })"
+    ]
+  }
+}

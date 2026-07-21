@@ -6,7 +6,11 @@ const props = defineProps<{ product: Product }>()
 const router = useRouter()
 
 function navigate() {
-  router.push({ name: 'product-detail', params: { id: props.product.id } })
+  router.push({
+    name: 'product-detail',
+    params: { id: props.product.id },
+    state: { product: props.product },
+  })
 }
 </script>
 

@@ -20,9 +20,13 @@ function emitFilters() {
   })
 }
 
+function toggleOrder() {
+  order.value = order.value === 'asc' ? 'desc' : 'asc'
+}
+
 watch(name, () => {
   clearTimeout(debounceTimer)
-  debounceTimer = setTimeout(emitFilters, 300)
+  debounceTimer = setTimeout(emitFilters, 400)
 })
 
 watch([category, sortBy, order], emitFilters)
@@ -55,28 +59,30 @@ watch([category, sortBy, order], emitFilters)
       </select>
     </div>
 
-    <div class="min-w-[140px]">
-      <label for="filter-sort" class="block text-xs font-medium text-gray-600 mb-1">Sort by</label>
-      <select
-        id="filter-sort"
-        v-model="sortBy"
-        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
-      >
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-      </select>
-    </div>
+    <div class="flex gap-2 items-end">
+      <div class="min-w-[140px]">
+        <label for="filter-sort" class="block text-xs font-medium text-gray-600 mb-1">Sort by</label>
+        <select
+          id="filter-sort"
+          v-model="sortBy"
+          class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        >
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+        </select>
+      </div>
 
-    <div class="min-w-[120px]">
-      <label for="filter-order" class="block text-xs font-medium text-gray-600 mb-1">Order</label>
-      <select
-        id="filter-order"
-        v-model="order"
-        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      <button
+        type="button"
+        class="h-[38px] w-[38px] flex items-center justify-center border border-gray-200 rounded-lg hover:bg-indigo-50 hover:border-indigo-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        :aria-label="order === 'asc' ? 'Sort ascending — click to switch to descending' : 'Sort descending — click to switch to ascending'"
+        @click="toggleOrder"
       >
-        <option value="asc">Ascending</option>
-        <option value="desc">Descending</option>
-      </select>
+        <i
+          :class="['pi', order === 'asc' ? 'pi-arrow-up' : 'pi-arrow-down', 'text-indigo-600']"
+          aria-hidden="true"
+        />
+      </button>
     </div>
   </div>
 </template>
