@@ -72,7 +72,7 @@ onMounted(() => fetchProducts(filters.value, true));
         <!-- Subtle spinner on filter re-fetches -->
         <i
           v-if="isRefetching"
-          class="pi pi-spin pi-spinner text-indigo-400 text-sm"
+          class="pi pi-spin pi-spinner text-orange-400 text-sm"
           aria-label="Updating results"
         />
       </div>

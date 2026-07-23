@@ -46,7 +46,7 @@ onMounted(fetchProduct)
   <div class="max-w-4xl mx-auto px-4 py-8">
     <button
       type="button"
-      class="flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-800 mb-6 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+      class="flex items-center gap-2 text-sm text-orange-600 hover:text-orange-800 mb-6 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 rounded"
       @click="router.push({ name: 'product-list' })"
     >
       <i class="pi pi-arrow-left" aria-hidden="true" />
@@ -64,15 +64,15 @@ onMounted(fetchProduct)
           class="w-full rounded-xl object-cover aspect-video"
         />
         <div class="flex flex-col">
-          <span class="inline-block text-xs font-medium bg-indigo-50 text-indigo-600 rounded-full px-2 py-0.5 mb-3 capitalize w-fit">
+          <span class="inline-block text-xs font-medium bg-orange-50 text-orange-600 rounded-full px-2 py-0.5 mb-3 capitalize w-fit">
             {{ preview.category.replace('-', ' ') }}
           </span>
           <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ preview.name }}</h1>
           <p class="text-gray-500 text-sm mb-4">{{ preview.shortDescription }}</p>
-          <p class="text-3xl font-bold text-indigo-600 mb-6">${{ preview.price.toFixed(2) }}</p>
+          <p class="text-3xl font-bold text-orange-600 mb-6">${{ preview.price.toFixed(2) }}</p>
           <button
             type="button"
-            class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-6 py-3 bg-orange-600 text-white rounded-xl font-semibold hover:bg-orange-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 flex items-center justify-center gap-2"
             @click="handleAddToCart"
           >
             <i class="pi pi-shopping-cart" aria-hidden="true" />
@@ -113,15 +113,15 @@ onMounted(fetchProduct)
           class="w-full rounded-xl object-cover aspect-video"
         />
         <div class="flex flex-col">
-          <span class="inline-block text-xs font-medium bg-indigo-50 text-indigo-600 rounded-full px-2 py-0.5 mb-3 capitalize w-fit">
+          <span class="inline-block text-xs font-medium bg-orange-50 text-orange-600 rounded-full px-2 py-0.5 mb-3 capitalize w-fit">
             {{ state.data.category.replace('-', ' ') }}
           </span>
           <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ state.data.name }}</h1>
           <p class="text-gray-500 text-sm mb-4">{{ state.data.shortDescription }}</p>
-          <p class="text-3xl font-bold text-indigo-600 mb-6">${{ state.data.price.toFixed(2) }}</p>
+          <p class="text-3xl font-bold text-orange-600 mb-6">${{ state.data.price.toFixed(2) }}</p>
           <button
             type="button"
-            class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-6 py-3 bg-orange-600 text-white rounded-xl font-semibold hover:bg-orange-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 flex items-center justify-center gap-2"
             @click="handleAddToCart"
           >
             <i :class="['pi', addedToCart ? 'pi-check' : 'pi-shopping-cart']" aria-hidden="true" />

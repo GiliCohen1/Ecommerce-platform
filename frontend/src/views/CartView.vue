@@ -20,7 +20,7 @@ const router = useRouter()
     >
       <button
         type="button"
-        class="mt-4 px-5 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        class="mt-4 px-5 py-2 bg-orange-600 text-white rounded-xl text-sm font-medium hover:bg-orange-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
         @click="router.push({ name: 'product-list' })"
       >
         Browse Products
@@ -41,14 +41,14 @@ const router = useRouter()
           <span class="text-gray-600">
             {{ cart.itemCount }} item{{ cart.itemCount !== 1 ? 's' : '' }}
           </span>
-          <span class="text-2xl font-bold text-indigo-600">
+          <span class="text-2xl font-bold text-orange-600">
             ${{ cart.total.toFixed(2) }}
           </span>
         </div>
 
         <button
           type="button"
-          class="w-full py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 mb-3"
+          class="w-full py-3 bg-orange-600 text-white rounded-xl font-semibold hover:bg-orange-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 mb-3"
         >
           Proceed to Checkout
         </button>

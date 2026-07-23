@@ -25,13 +25,13 @@ function remove() {
     <div class="flex-1 min-w-0">
       <h3 class="font-medium text-gray-900 text-sm truncate">{{ item.product.name }}</h3>
       <p class="text-xs text-gray-400 capitalize">{{ item.product.category.replace('-', ' ') }}</p>
-      <p class="text-indigo-600 font-semibold text-sm mt-1">${{ item.product.price.toFixed(2) }}</p>
+      <p class="text-orange-600 font-semibold text-sm mt-1">${{ item.product.price.toFixed(2) }}</p>
     </div>
 
     <div class="flex items-center gap-2">
       <button
         type="button"
-        class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 disabled:opacity-40"
+        class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 disabled:opacity-40"
         :disabled="item.quantity <= 1"
         @click="changeQty(-1)"
         :aria-label="`Decrease quantity of ${item.product.name}`"
@@ -43,7 +43,7 @@ function remove() {
 
       <button
         type="button"
-        class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
         @click="changeQty(1)"
         :aria-label="`Increase quantity of ${item.product.name}`"
       >

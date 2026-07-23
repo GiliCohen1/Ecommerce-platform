@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
 
 const cart = useCartStore()
-const router = useRouter()
 
 const itemCount = computed(() => cart.itemCount)
 </script>
@@ -14,7 +12,7 @@ const itemCount = computed(() => cart.itemCount)
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
       <router-link
         to="/"
-        class="text-lg font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
+        class="text-lg font-bold text-orange-600 hover:text-orange-800 transition-colors"
       >
         DigitalShop
       </router-link>
@@ -22,20 +20,20 @@ const itemCount = computed(() => cart.itemCount)
       <div class="flex items-center gap-4">
         <router-link
           to="/"
-          class="text-sm text-gray-600 hover:text-indigo-600 transition-colors"
+          class="text-sm text-gray-600 hover:text-orange-600 transition-colors"
         >
           Products
         </router-link>
 
         <router-link
           to="/cart"
-          class="relative flex items-center gap-1 text-sm text-gray-600 hover:text-indigo-600 transition-colors"
+          class="relative flex items-center gap-1 text-sm text-gray-600 hover:text-orange-600 transition-colors"
           aria-label="`Shopping cart, ${itemCount} items`"
         >
           <i class="pi pi-shopping-cart text-lg" aria-hidden="true" />
           <span
             v-if="itemCount > 0"
-            class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center"
+            class="absolute -top-2 -right-2 bg-orange-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center"
             aria-live="polite"
           >
             {{ itemCount }}

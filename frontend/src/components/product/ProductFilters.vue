@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import type { ProductFilters } from '@/types'
 
 const emit = defineEmits<{ 'update:filters': [filters: ProductFilters] }>()
@@ -8,6 +8,10 @@ const name = ref('')
 const category = ref('')
 const sortBy = ref<'name' | 'price'>('name')
 const order = ref<'asc' | 'desc'>('asc')
+
+const isDirty = computed(
+  () => name.value !== '' || category.value !== '' || sortBy.value !== 'name' || order.value !== 'asc'
+)
 
 let debounceTimer: ReturnType<typeof setTimeout>
 
@@ -22,6 +26,13 @@ function emitFilters() {
 
 function toggleOrder() {
   order.value = order.value === 'asc' ? 'desc' : 'asc'
+}
+
+function resetFilters() {
+  name.value = ''
+  category.value = ''
+  sortBy.value = 'name'
+  order.value = 'asc'
 }
 
 watch(name, () => {
@@ -41,7 +52,7 @@ watch([category, sortBy, order], emitFilters)
         v-model="name"
         type="search"
         placeholder="Search products..."
-        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
       />
     </div>
 
@@ -50,7 +61,7 @@ watch([category, sortBy, order], emitFilters)
       <select
         id="filter-category"
         v-model="category"
-        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
       >
         <option value="">All categories</option>
         <option value="online-course">Online Course</option>
@@ -65,7 +76,7 @@ watch([category, sortBy, order], emitFilters)
         <select
           id="filter-sort"
           v-model="sortBy"
-          class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
         >
           <option value="name">Name</option>
           <option value="price">Price</option>
@@ -74,14 +85,27 @@ watch([category, sortBy, order], emitFilters)
 
       <button
         type="button"
-        class="h-[38px] w-[38px] flex items-center justify-center border border-gray-200 rounded-lg hover:bg-indigo-50 hover:border-indigo-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        class="h-[38px] w-[38px] flex items-center justify-center border border-gray-200 rounded-lg hover:bg-orange-50 hover:border-orange-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
         :aria-label="order === 'asc' ? 'Sort ascending — click to switch to descending' : 'Sort descending — click to switch to ascending'"
         @click="toggleOrder"
       >
         <i
-          :class="['pi', order === 'asc' ? 'pi-arrow-up' : 'pi-arrow-down', 'text-indigo-600']"
+          :class="['pi', order === 'asc' ? 'pi-arrow-up' : 'pi-arrow-down', 'text-orange-600']"
           aria-hidden="true"
         />
+      </button>
+
+      <button
+        type="button"
+        title="Reset filters"
+        aria-label="Reset all filters"
+        class="h-[38px] w-[38px] flex items-center justify-center border rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+        :class="isDirty
+          ? 'border-orange-200 text-orange-600 hover:bg-orange-50 cursor-pointer'
+          : 'border-gray-100 text-gray-300 cursor-default'"
+        @click="resetFilters"
+      >
+        <i class="pi pi-times text-xs" aria-hidden="true" />
       </button>
     </div>
   </div>

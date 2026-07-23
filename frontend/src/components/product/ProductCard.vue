@@ -9,7 +9,8 @@ function navigate() {
   router.push({
     name: 'product-detail',
     params: { id: props.product.id },
-    state: { product: props.product },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    state: { product: props.product as any },
   })
 }
 </script>
@@ -17,7 +18,7 @@ function navigate() {
 <template>
   <button
     type="button"
-    class="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow text-left w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+    class="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow text-left w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
     @click="navigate"
     :aria-label="`View details for ${product.name}`"
   >
@@ -29,13 +30,13 @@ function navigate() {
     />
     <div class="p-4">
       <span
-        class="inline-block text-xs font-medium bg-indigo-50 text-indigo-600 rounded-full px-2 py-0.5 mb-2 capitalize"
+        class="inline-block text-xs font-medium bg-orange-50 text-orange-600 rounded-full px-2 py-0.5 mb-2 capitalize"
       >
         {{ product.category.replace('-', ' ') }}
       </span>
       <h2 class="font-semibold text-gray-900 text-sm mb-1 line-clamp-2">{{ product.name }}</h2>
       <p class="text-xs text-gray-500 line-clamp-2 mb-3">{{ product.shortDescription }}</p>
-      <p class="font-bold text-indigo-600">${{ product.price.toFixed(2) }}</p>
+      <p class="font-bold text-orange-600">${{ product.price.toFixed(2) }}</p>
     </div>
   </button>
 </template>
