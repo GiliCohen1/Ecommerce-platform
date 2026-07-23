@@ -1,6 +1,6 @@
 # Mini E-Commerce Platform
 
-A full-stack mini e-commerce application for digital products (e-books, software licenses, online courses).
+A full-stack mini e-commerce application for digital products (e-books, software licenses, online courses)..
 
 **Stack:** Vue 3 + TypeScript + Pinia + Tailwind CSS + PrimeVue | Python FastAPI + Redis
 
