@@ -6,7 +6,9 @@ A full-stack mini e-commerce application for digital products (e-books, software
 
 ---
 
-## Quick Start (Docker)
+## Quick Start (Docker — recommended)
+
+> Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) to be running.
 
 ```bash
 docker-compose up --build
@@ -14,48 +16,96 @@ docker-compose up --build
 
 | Service | URL |
 |---|---|
-| Frontend | http://localhost:5173 |
+| Frontend | http://localhost:8081 |
 | Backend API | http://localhost:8000 |
 | API Docs (Swagger) | http://localhost:8000/docs |
 
 ---
 
-## Frontend Setup (without Docker)
+## Manual Setup (without Docker)
 
-**Prerequisites:** Node.js 18+
+### Prerequisites
 
-```bash
-cd frontend
-cp .env.example .env
-npm install
-npm run dev
-```
-
-The app runs at http://localhost:5173.
-
-**Run frontend tests:**
-```bash
-npm run test
-```
+| Tool | Min version |
+|---|---|
+| Node.js | 18+ |
+| Python | 3.12+ |
+| Redis | 7+ (optional — app works without it) |
 
 ---
 
-## Backend Setup (without Docker)
-
-**Prerequisites:** Python 3.12+, Redis (optional — app degrades gracefully without it)
+### 1. Backend
 
 ```bash
 cd backend
-cp .env.example .env        # edit REDIS_URL if needed
-py -m pip install -r requirements.txt
-py -m uvicorn app.main:app --reload
+
+# Copy env file (edit REDIS_URL if you have Redis running)
+cp .env.example .env          # Mac / Linux
+copy .env.example .env        # Windows
+
+# Install dependencies
+pip install -r requirements.txt       # Mac / Linux
+py -m pip install -r requirements.txt # Windows
+
+# Start the server
+uvicorn app.main:app --reload         # Mac / Linux
+py -m uvicorn app.main:app --reload   # Windows
 ```
 
-The API runs at http://localhost:8000. Swagger UI is at http://localhost:8000/docs.
+API runs at **http://localhost:8000**  
+Interactive API docs at **http://localhost:8000/docs**
 
-**Run backend tests:**
+---
+
+### 2. Frontend
+
+Open a new terminal:
+
 ```bash
-py -m pytest app/tests/ -v
+cd frontend
+
+# Copy env file
+cp .env.example .env          # Mac / Linux
+copy .env.example .env        # Windows
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
+
+App runs at **http://localhost:8081**
+
+---
+
+### 3. Redis (optional)
+
+If you have Docker available but don't want to run the full compose stack:
+
+```bash
+docker run -p 6379:6379 redis:7-alpine
+```
+
+Without Redis the app works fine — product responses are served directly from memory and a 30-second reconnect cooldown prevents any extra latency.
+
+---
+
+## Running Tests
+
+### Backend
+
+```bash
+cd backend
+pytest app/tests/ -v                  # Mac / Linux
+py -m pytest app/tests/ -v           # Windows
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm run test
 ```
 
 ---
@@ -91,8 +141,6 @@ Returns a filtered and sorted list of product summaries.
 }
 ```
 
----
-
 ### GET /products/{id}
 
 Returns full product details including long description and reviews.
@@ -118,8 +166,6 @@ Returns full product details including long description and reviews.
 { "detail": "Product with id 'xyz' not found." }
 ```
 
----
-
 ### GET /health
 
 ```json
@@ -132,11 +178,11 @@ Returns full product details including long description and reviews.
 
 ### Cart: client-side only (Pinia)
 
-The shopping cart is managed entirely in the Vue frontend via a Pinia store. No server-side cart endpoints exist. This decision was made because:
+The shopping cart is managed entirely in the Vue frontend via a Pinia store. No server-side cart endpoints exist because:
 
 - The spec involves digital products with no user accounts or session persistence requirements
 - The assignment explicitly permits this: *"handle cart client-side via Pinia if cart is not meant to persist server-side"*
-- It keeps the backend focused on its core concern (product data) and makes the cart store trivially testable with Vitest
+- It keeps the backend focused on product data and makes the cart store trivially unit-testable with Vitest
 
 ### Redis caching
 
@@ -144,7 +190,7 @@ Product list and detail responses are cached in Redis with TTL values:
 - Filtered product lists: 120–300 seconds
 - Single product details: 600 seconds
 
-If Redis is unavailable, the backend degrades gracefully — all requests are served directly from the JSON data file with a warning logged. Redis is a performance layer, not a hard dependency.
+If Redis is unavailable, a 30-second circuit breaker prevents repeated reconnect attempts on every request. All responses continue to be served from the in-memory JSON store with no extra latency.
 
 ### FastAPI over Flask
 
@@ -156,7 +202,8 @@ FastAPI was chosen for its auto-generated Swagger UI (`/docs`), built-in request
 
 ```
 ecommerce-platform/
-├── frontend/               # Vue 3 + TypeScript
+├── docker-compose.yml
+├── frontend/               # Vue 3 + TypeScript (port 8081)
 │   └── src/
 │       ├── types/          # TypeScript interfaces (Product, CartItem, etc.)
 │       ├── api/            # Axios HTTP layer
@@ -165,7 +212,7 @@ ecommerce-platform/
 │       ├── components/     # Reusable UI components
 │       ├── views/          # Page-level components
 │       └── tests/          # Vitest unit tests
-└── backend/                # Python FastAPI
+└── backend/                # Python FastAPI (port 8000)
     └── app/
         ├── data/           # products.json mock database
         ├── models/         # Pydantic response models
