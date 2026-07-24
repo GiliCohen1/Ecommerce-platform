@@ -1,9 +1,14 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { CartItem, Product } from '@/types'
 
+const STORAGE_KEY = 'ecom:cart'
+
 export const useCartStore = defineStore('cart', () => {
-  const items = ref<CartItem[]>([])
+  const stored = localStorage.getItem(STORAGE_KEY)
+  const items = ref<CartItem[]>(stored ? JSON.parse(stored) : [])
+
+  watch(items, (val) => localStorage.setItem(STORAGE_KEY, JSON.stringify(val)), { deep: true })
 
   const itemCount = computed(() =>
     items.value.reduce((sum, item) => sum + item.quantity, 0),
